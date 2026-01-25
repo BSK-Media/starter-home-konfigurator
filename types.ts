@@ -42,6 +42,7 @@ export interface House {
   name: string;
   status: 'COMPLETED' | 'DRAFT'; // Ceny uzupełnione vs Do uzupełnienia
   image: string;
+  images?: string[]; // Galeria zdjęć (webp)
   basePrice: number; // Cena startowa (dla wyświetlania na karcie)
   area: string; // Legacy: np. 70 m2 - wyświetlane jeśli brak 'details'
   details?: HouseDetails; // Nowe pole dla szczegółowej specyfikacji

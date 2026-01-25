@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import { HOUSES, getHouseConfig } from './constants';
 import { UserSelection, InputType, House } from './types';
 import { OptionCard } from './components/OptionCard';
+import ImageGallery from './components/ImageGallery';
 import { 
   Receipt, 
   CheckCircle2, 
@@ -380,11 +381,11 @@ export const App: React.FC = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                     {/* Left Column: Full Height Image */}
-                    <div className="relative h-64 lg:h-auto min-h-[400px] lg:min-h-[600px] w-full bg-gray-100 group overflow-hidden">
-                        <img
-                            src={selectedHouse.image}
-                            alt={selectedHouse.name}
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    <div className="h-64 lg:h-auto min-h-[400px] lg:min-h-[600px] w-full overflow-hidden bg-gray-100">
+                        <ImageGallery
+                          images={(selectedHouse.images && selectedHouse.images.length) ? selectedHouse.images : [selectedHouse.image]}
+                          alt={selectedHouse.name}
+                          className="h-full"
                         />
                     </div>
 
