@@ -4,6 +4,8 @@ import { HOUSES, getHouseConfig } from './constants';
 import { UserSelection, InputType, House } from './types';
 import { OptionCard } from './components/OptionCard';
 import ImageGallery from './components/ImageGallery';
+import SiteHeader from './components/SiteHeader';
+import SiteFooter from './components/SiteFooter';
 import { 
   Receipt, 
   CheckCircle2, 
@@ -17,7 +19,7 @@ import {
   Check,
   Building2,
   ArrowRight,
-  ChevronLeft,
+  
   Loader2,
   Send,
   AlertCircle,
@@ -241,29 +243,7 @@ export const App: React.FC = () => {
   if (!selectedHouse) {
     return (
       <div className="min-h-screen bg-gray-50 font-sans animate-fade-in">
-         <header className="bg-white/80 backdrop-blur-md border-b sticky top-0 z-30 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                 <a href="https://starterhome.pl/" className="flex items-center gap-3 group text-gray-500 hover:text-gray-900 transition-colors">
-                    <div className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center group-hover:border-[#729c36] transition-colors shadow-sm">
-                       <ChevronLeft className="w-5 h-5 text-gray-400 group-hover:text-[#729c36]" />
-                    </div>
-                    <img 
-                      src="https://todybnsadf.cfolks.pl/logo-sh.png" 
-                      alt="Starter Home" 
-                      className="h-10 md:h-12 w-auto object-contain"
-                    />
-                 </a>
-              </div>
-              <a 
-                href="tel:733345573" 
-                className="flex items-center gap-2 text-gray-700 hover:text-[#729c36] transition-colors font-semibold bg-white px-4 py-2 rounded-full border border-gray-200 hover:border-[#729c36] shadow-sm group"
-              >
-                 <Phone className="w-4 h-4 text-[#729c36] group-hover:scale-110 transition-transform" />
-                 <span className="hidden sm:inline">733 345 573</span>
-              </a>
-            </div>
-         </header>
+         <SiteHeader onShowModels={() => setSelectedHouse(null)} />
 
          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="text-center mb-16">
@@ -326,6 +306,8 @@ export const App: React.FC = () => {
                 ))}
             </div>
          </main>
+
+        <SiteFooter />
       </div>
     );
   }
@@ -340,41 +322,7 @@ export const App: React.FC = () => {
       */}
       <div className="animate-fade-in">
         {/* Header */}
-        <header className="bg-white/80 backdrop-blur-md border-b sticky top-0 z-30 shadow-sm transition-all">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-                <button 
-                    onClick={() => setSelectedHouse(null)}
-                    className="flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors uppercase tracking-wider mr-4"
-                >
-                    <ChevronLeft className="w-5 h-5" />
-                    Powrót
-                </button>
-                <div className="h-8 w-px bg-gray-200 hidden sm:block"></div>
-                <a href="https://starterhome.pl/" className="hover:opacity-80 transition-opacity">
-                    <img 
-                    src="https://todybnsadf.cfolks.pl/logo-sh.png" 
-                    alt="Starter Home" 
-                    className="h-8 md:h-10 w-auto object-contain ml-0 sm:ml-4"
-                    />
-                </a>
-            </div>
-            <div className="flex items-center gap-6">
-                 {/* House Name hidden on small screens */}
-                <span className="hidden md:block text-[#729c36] font-bold uppercase tracking-widest text-sm">{selectedHouse.name}</span>
-                
-                <a 
-                    href="tel:733345573" 
-                    className="flex items-center gap-2 text-gray-700 hover:text-[#729c36] transition-colors font-semibold group"
-                >
-                    <div className="w-9 h-9 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center group-hover:border-[#729c36] transition-colors">
-                        <Phone className="w-4 h-4" />
-                    </div>
-                    <span className="hidden sm:inline text-sm">733 345 573</span>
-                </a>
-            </div>
-            </div>
-        </header>
+        <SiteHeader onShowModels={() => setSelectedHouse(null)} />
 
         {/* Hero / Specification Section */}
         <section className="bg-white border-b border-gray-200">
@@ -582,6 +530,8 @@ export const App: React.FC = () => {
       </div>
 
       {/* Sticky Bottom Bar */}
+      <SiteFooter />
+
       <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-4px_30px_rgba(0,0,0,0.08)] z-40">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 py-4 gap-4">
           
