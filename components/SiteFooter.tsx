@@ -74,7 +74,7 @@ const SiteFooter: React.FC = () => {
 
           {/* Sitemap */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-900 mb-5">Sitemap</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-900 mb-5">Mapa strony</h3>
             <ul className="space-y-3">
               {sitemap.map((l) => (
                 <li key={l.label}>
@@ -88,7 +88,7 @@ const SiteFooter: React.FC = () => {
 
           {/* Models */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-900 mb-5">Modele domów</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-900 mb-5">Dostępne modele</h3>
             <ul className="space-y-3">
               {models.map((l) => (
                 <li key={l.label}>
