@@ -76,7 +76,7 @@ const SiteHeader: React.FC<Props> = ({ onShowModels }) => {
           ))}
         </nav>
 
-        {/* Right: phone + CTA + mobile toggle */}
+        {/* Right: phone + mobile toggle */}
         <div className="flex items-center gap-3">
           <a
             href="tel:733345573"
@@ -86,19 +86,7 @@ const SiteHeader: React.FC<Props> = ({ onShowModels }) => {
             <span>733 345 573</span>
           </a>
 
-          <a
-            href={modelsHref}
-            onClick={(e) => {
-              if (onShowModels) {
-                e.preventDefault();
-                onShowModels();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
-            className="hidden sm:inline-flex bg-[#729c36] hover:bg-[#5d822b] text-white font-bold text-xs md:text-sm py-3 px-5 rounded-full transition-all duration-300 shadow-lg shadow-green-600/20 hover:shadow-green-600/35 uppercase tracking-widest"
-          >
-            Konfigurator online
-          </a>
+          {/* NOTE: We are already inside the configurator – CTA removed to match starterhome.pl header layout. */}
 
           <button
             type="button"
@@ -137,20 +125,7 @@ const SiteHeader: React.FC<Props> = ({ onShowModels }) => {
               </a>
             ))}
 
-            <a
-              href={modelsHref}
-              onClick={(e) => {
-                if (onShowModels) {
-                  e.preventDefault();
-                  onShowModels();
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                  setMobileOpen(false);
-                }
-              }}
-              className="mt-2 inline-flex justify-center bg-[#729c36] hover:bg-[#5d822b] text-white font-bold text-xs py-3 px-5 rounded-full transition-all duration-300 uppercase tracking-widest"
-            >
-              Konfigurator online
-            </a>
+            {/* CTA removed (we are already in configurator). */}
           </div>
         </div>
       )}

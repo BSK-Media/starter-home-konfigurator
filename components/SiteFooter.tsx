@@ -14,14 +14,15 @@ const SiteFooter: React.FC = () => {
   ];
 
   const models: LinkItem[] = [
-    { label: 'Nest House', href: 'https://starterhome.pl/oferta/nest-house/' },
-    { label: 'Haven House', href: 'https://starterhome.pl/oferta/haven-house/' },
-    { label: 'Peak House', href: 'https://starterhome.pl/oferta/peak-house/' },
-    { label: 'Skyline House', href: 'https://starterhome.pl/oferta/skyline-house/' },
-    { label: 'Vista House', href: 'https://starterhome.pl/oferta/vista-house/' },
-    { label: 'Zenith House', href: 'https://starterhome.pl/oferta/zenith-house/' },
-    { label: 'Balance House', href: 'https://starterhome.pl/oferta/balance-house/' },
-    { label: 'Comfort House', href: 'https://starterhome.pl/oferta/comfort-house/' },
+    // Links intentionally removed for the configurator app – this section is informational only.
+    { label: 'Nest House', href: '' },
+    { label: 'Haven House', href: '' },
+    { label: 'Peak House', href: '' },
+    { label: 'Skyline House', href: '' },
+    { label: 'Vista House', href: '' },
+    { label: 'Zenith House', href: '' },
+    { label: 'Balance House', href: '' },
+    { label: 'Comfort House', href: '' },
   ];
 
   return (
@@ -91,9 +92,7 @@ const SiteFooter: React.FC = () => {
             <ul className="space-y-3">
               {models.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-sm text-gray-600 hover:text-[#729c36] transition-colors">
-                    {l.label}
-                  </a>
+                  <span className="text-sm text-gray-600">{l.label}</span>
                 </li>
               ))}
             </ul>
