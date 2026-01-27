@@ -570,7 +570,7 @@ export const App: React.FC = () => {
             onClick={() => setIsFormOpen(true)}
             className="w-full md:w-auto bg-[#729c36] hover:bg-[#5d822b] text-white font-bold text-base md:text-lg py-4 px-12 transition-all duration-300 shadow-lg shadow-green-600/20 hover:shadow-green-600/40 flex justify-center items-center gap-3 uppercase tracking-wider group"
           >
-            <span>Złóż zapytanie</span>
+            <span>Wyślij zapytanie</span>
             <CheckCircle2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
           </button>
 
