@@ -509,6 +509,24 @@ export const App: React.FC = () => {
                             </span>
                         </div>
                         ))}
+                      {/* TRANSPORT – ZAWSZE WIDOCZNY */}
+<div className="flex justify-between items-start text-sm border-t border-dashed border-gray-200 pt-4 mt-4">
+  <div className="pr-4">
+    <span className="block text-xs text-gray-400 uppercase tracking-wider font-semibold mb-0.5">
+      Transport
+    </span>
+    <span className="text-gray-800 font-medium">
+      Wyceniany indywidualnie
+    </span>
+    <span className="block text-[11px] text-gray-400 mt-1">
+      Zakres 3000–7000 zł netto
+    </span>
+  </div>
+  <span className="font-bold text-gray-500 whitespace-nowrap bg-gray-50 px-2 py-1 text-xs">
+    —
+  </span>
+</div>
+
                     </div>
                     
                     <div className="mt-6 pt-6 border-t border-gray-100">
