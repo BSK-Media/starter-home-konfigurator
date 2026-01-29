@@ -6,6 +6,7 @@ import { OptionCard } from './components/OptionCard';
 import ImageGallery from './components/ImageGallery';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
+import InvestmentCostTable from "./components/InvestmentCostTable";
 import { 
   Receipt, 
   CheckCircle2, 
@@ -244,7 +245,7 @@ export const App: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50 font-sans animate-fade-in">
          <SiteHeader onShowModels={() => setSelectedHouse(null)} />
-
+        <InvestmentCostTable />
          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="text-center mb-16">
                 <span className="bg-[#f7faf3] text-[#729c36] text-xs font-bold px-3 py-1 uppercase tracking-widest border border-[#e2e8da] rounded-full">
