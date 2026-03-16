@@ -55,7 +55,7 @@ const SiteHeader: React.FC<Props> = ({ onShowModels }) => {
         {/* Left: logo */}
         <a href="https://starterhome.pl/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
           <img
-            src="https://todybnsadf.cfolks.pl/logo-sh.png"
+            src="https://starterhome.pl/wp-content/uploads/2025/12/Logo.png"
             alt="Starter Home"
             className="h-9 md:h-10 w-auto object-contain"
           />

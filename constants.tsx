@@ -253,7 +253,7 @@ export const HOUSES: House[] = [
     description: 'Dom o powierzchni użytkowej 45 m² został zaprojektowany z myślą o funkcjonalności. Posiada dwie sypialnie, salon z aneksem kuchennym oraz łazienkę, tworząc praktyczną i komfortową przestrzeń do codziennego życia.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/01/Nest-House-1-scaled.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/01/Nest-House-1-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Nest-House-2-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Nest-House-3-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Nest-House-4-scaled.webp'],
-    floorPlanPdf: 'https://todybnsadf.cfolks.pl/Nest.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Nest-House-55m2.pdf'
   },
   { 
     id: 'haven_house', 
@@ -269,7 +269,7 @@ export const HOUSES: House[] = [
     description: 'Praktyczny dom o 58 m² powierzchni użytkowej łączy funkcjonalność z komfortem. Znajdują się w nim dwie sypialnie, otwarty salon z kuchnią oraz łazienka, tworząc spójną i przyjazną przestrzeń mieszkalną.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/01/Haven-House-1-scaled.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/01/Haven-House-1-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Haven-House-2-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Haven-House-3-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Haven-House-4-scaled.webp'],
-    floorPlanPdf: 'https://todybnsadf.cfolks.pl/Haven.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Haven-House.pdf'
   },
   { 
     id: 'balance_house', 
@@ -285,7 +285,7 @@ export const HOUSES: House[] = [
     description: 'Dom o 80 m² powierzchni użytkowej oferuje komfortową przestrzeń dla rodziny. Składa się z trzech sypialni, salonu z aneksem kuchennym oraz łazienki, zapewniając wygodne i funkcjonalne wnętrze do codziennego życia.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/01/Balance-House-1-scaled.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/01/Balance-House-1-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Balance-House-2-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Balance-House-3-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Balance-House-4-scaled.webp'],
-    floorPlanPdf: 'https://todybnsadf.cfolks.pl/Balance.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Balance-House-95m2.pdf'
   },
   { 
     id: 'comfort_house', 
@@ -301,7 +301,7 @@ export const HOUSES: House[] = [
     description: 'Comfort House to parterowy dom o powierzchni 86 m², stworzony z myślą o wygodzie rodziny. Posiada trzy sypialnie oraz otwartą część dzienną, w której salon płynnie łączy się z kuchnią, zapewniając praktyczną i przyjazną przestrzeń do życia.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/01/Comfort-House-1-scaled.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/01/Comfort-House-1-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Comfort-House-2-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Comfort-House-3-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Comfort-House-4-scaled.webp'],
-    floorPlanPdf: 'https://todybnsadf.cfolks.pl/Comfort.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Comfort-House.pdf'
   },
   { 
     id: 'vista_house', 
@@ -317,7 +317,7 @@ export const HOUSES: House[] = [
     description: 'Duży, komfortowy dom o 108 m² powierzchni użytkowej zapewnia przestrzeń i wygodę dla całej rodziny. Składa się z trzech sypialni, salonu z aneksem kuchennym oraz łazienki, oferując funkcjonalne wnętrze, w którym każdy znajdzie swoje miejsce i swobodę codziennego życia.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/01/Vista-House-1-scaled.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/01/Vista-House-1-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Vista-House-2-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Vista-House-3-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Vista-House-4-scaled.webp'],
-    floorPlanPdf: 'https://todybnsadf.cfolks.pl/Vista.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Vista-House-126m2.pdf'
   },
   { 
     id: 'peak_house', 
@@ -333,7 +333,7 @@ export const HOUSES: House[] = [
     description: 'Piętrowy dom o 111 m² powierzchni użytkowej łączy przestronność z funkcjonalnością. Na parterze znajdują się salon z aneksem kuchennym, łazienka oraz sypialnia, a na piętrze dwie kolejne sypialnie, tworząc wygodne i komfortowe wnętrze dla całej rodziny.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/01/Peak-House-1-1024x768-1.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/01/Peak-House-1-1024x768-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Peak-House-2-1024x768-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Peak-House-3-1024x768-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Peak-House-4-1024x768-1.webp'],
-    floorPlanPdf: 'https://todybnsadf.cfolks.pl/Peak.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Peak-House.pdf'
   },
   { 
     id: 'skyline_house', 
@@ -349,7 +349,7 @@ export const HOUSES: House[] = [
     description: 'Nowoczesny dom o formie stodoły, 35 m², z praktycznym parterem i antresolą. Szerokie okna gwarantują jasne wnętrza i atrakcyjne widoki na otoczenie.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/01/skyline-1-scaled.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/01/skyline-1-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/skyline-2-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/skyline-3-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/skyline-4-scaled.webp'],
-    floorPlanPdf: 'https://todybnsadf.cfolks.pl/Skyline.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Skyline-House.pdf'
   },
   { 
     id: 'zenith_house', 
@@ -365,7 +365,7 @@ export const HOUSES: House[] = [
     description: 'Zenith House 35 m² łączy elegancję z przytulnością. Duże przeszklenia na bocznej ścianie nadają budynkowi wyjątkowy, nowoczesny charakter, a dwuspadowy dach urozmaica bryłę. Funkcjonalne wnętrze zapewnia komfortową przestrzeń dla rodziny.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/01/Zenith-House-1-scaled.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/01/Zenith-House-1-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Zenith-House-2-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Zenith-House-3-scaled.webp', 'https://starterhome.pl/wp-content/uploads/2026/01/Zenith-House-4-scaled.webp'],
-    floorPlanPdf: 'https://todybnsadf.cfolks.pl/Zenith.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Zenith-House-35m2.pdf'
   },
 ];
 

@@ -32,7 +32,7 @@ const SiteFooter: React.FC = () => {
           {/* Brand / intro */}
           <div className="md:col-span-1">
             <img
-              src="https://todybnsadf.cfolks.pl/logo-sh.png"
+              src="https://starterhome.pl/wp-content/uploads/2025/12/Logo.png"
               alt="Starter Home"
               className="h-9 w-auto object-contain mb-5"
             />
