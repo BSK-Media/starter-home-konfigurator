@@ -323,7 +323,7 @@ export const HOUSES: House[] = [
     id: 'peak_house', 
     name: 'Peak HOUSE', 
     status: 'COMPLETED', 
-    basePrice: 259800, 
+    basePrice: 274700, 
     area: 'Do ustalenia',
     details: {
       builtArea: '67 m²',
@@ -1093,8 +1093,8 @@ const PEAK_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Home',
     inputType: InputType.RADIO,
     variants: [
-      { id: 'raw_closed', label: 'Stan surowy zamknięty', price: 259800, description: 'Konstrukcja, ściany, dach, okna, drzwi zewnętrzne.', detailsHtml: DESC_RAW_CLOSED },
-      { id: 'developer', label: 'Stan deweloperski', price: 359700, description: 'Instalacje, tynki, wylewki, ocieplenie.', detailsHtml: DESC_DEVELOPER }
+      { id: 'raw_closed', label: 'Stan surowy zamknięty', price: 274700, description: 'Konstrukcja, ściany, dach, okna, drzwi zewnętrzne.', detailsHtml: DESC_RAW_CLOSED },
+      { id: 'developer', label: 'Stan deweloperski', price: 374500, description: 'Instalacje, tynki, wylewki, ocieplenie.', detailsHtml: DESC_DEVELOPER }
     ]
   },
   {
