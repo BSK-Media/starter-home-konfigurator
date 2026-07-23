@@ -295,10 +295,10 @@ export const HOUSES: House[] = [
     area: 'Do ustalenia',
     details: {
       builtArea: '94 m²',
-      usableArea: '80 m²',
+      usableArea: '100 m²',
       bedrooms: 3
     },
-    description: 'Dom o 80 m² powierzchni użytkowej oferuje komfortową przestrzeń dla rodziny. Składa się z trzech sypialni, salonu z aneksem kuchennym oraz łazienki, zapewniając wygodne i funkcjonalne wnętrze do codziennego życia.',
+    description: 'Dom o 100 m² powierzchni użytkowej oferuje komfortową przestrzeń dla rodziny. Składa się z trzech sypialni, salonu z aneksem kuchennym oraz łazienki, zapewniając wygodne i funkcjonalne wnętrze do codziennego życia.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl-2.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl-3.webp'],
     floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Balance-House-XL.pdf'
