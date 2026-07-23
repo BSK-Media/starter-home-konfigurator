@@ -327,10 +327,10 @@ export const HOUSES: House[] = [
     area: 'Do ustalenia',
     details: {
       builtArea: '103 m²',
-      usableArea: '86 m²',
+      usableArea: '101 m²',
       bedrooms: 3
     },
-    description: 'Comfort House XL to parterowy dom o powierzchni 86 m², stworzony z myślą o wygodzie rodziny. Posiada trzy sypialnie oraz otwartą część dzienną, w której salon płynnie łączy się z kuchnią, zapewniając praktyczną i przyjazną przestrzeń do życia.',
+    description: 'Comfort House XL to parterowy dom o powierzchni 101 m², stworzony z myślą o wygodzie rodziny. Posiada trzy sypialnie oraz otwartą część dzienną, w której salon płynnie łączy się z kuchnią, zapewniając praktyczną i przyjazną przestrzeń do życia.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl-2.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl-3.webp'],
     floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Comfort-House-XL.pdf'
