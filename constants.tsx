@@ -320,6 +320,22 @@ export const HOUSES: House[] = [
     floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Comfort-House.pdf'
   },
   { 
+    id: 'comfort_house_xl', 
+    name: 'Comfort HOUSE XL', 
+    status: 'COMPLETED', 
+    basePrice: 318500, 
+    area: 'Do ustalenia',
+    details: {
+      builtArea: '103 m²',
+      usableArea: '86 m²',
+      bedrooms: 3
+    },
+    description: 'Comfort House XL to parterowy dom o powierzchni 86 m², stworzony z myślą o wygodzie rodziny. Posiada trzy sypialnie oraz otwartą część dzienną, w której salon płynnie łączy się z kuchnią, zapewniając praktyczną i przyjazną przestrzeń do życia.',
+    image: 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl.webp',
+    images: ['https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl-2.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-comfort-house-xl-3.webp'],
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Comfort-House-XL.pdf'
+  },
+  { 
     id: 'vista_house', 
     name: 'Vista HOUSE', 
     status: 'COMPLETED', 
@@ -824,6 +840,34 @@ const COMFORT_HOUSE_CONFIG: ConfigCategory[] = [
   }
 ];
 
+const COMFORT_HOUSE_XL_CONFIG: ConfigCategory[] = COMFORT_HOUSE_CONFIG.map((category) => {
+  if (category.id === 'base_stage') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) => {
+        if (variant.id === 'raw_closed') {
+          return { ...variant, price: 318500 };
+        }
+        if (variant.id === 'developer') {
+          return { ...variant, price: 440577 };
+        }
+        return variant;
+      })
+    };
+  }
+
+  if (category.id === 'foundation') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) =>
+        variant.id === 'slab' ? { ...variant, price: 90723 } : variant
+      )
+    };
+  }
+
+  return category;
+});
+
 const VISTA_HOUSE_CONFIG: ConfigCategory[] = [
   {
     id: 'base_stage',
@@ -1250,6 +1294,9 @@ export const getHouseConfig = (houseId: string): ConfigCategory[] => {
   }
   if (houseId === 'comfort_house') {
     return COMFORT_HOUSE_CONFIG;
+  }
+  if (houseId === 'comfort_house_xl') {
+    return COMFORT_HOUSE_XL_CONFIG;
   }
   if (houseId === 'vista_house') {
     return VISTA_HOUSE_CONFIG;
