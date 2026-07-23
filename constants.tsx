@@ -301,7 +301,7 @@ export const HOUSES: House[] = [
     description: 'Dom o 80 m² powierzchni użytkowej oferuje komfortową przestrzeń dla rodziny. Składa się z trzech sypialni, salonu z aneksem kuchennym oraz łazienki, zapewniając wygodne i funkcjonalne wnętrze do codziennego życia.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl-2.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl-3.webp'],
-    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/rzuty-balance-house-xl.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Balance-House-XL.pdf'
   },
   { 
     id: 'comfort_house', 
