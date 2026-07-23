@@ -291,7 +291,7 @@ export const HOUSES: House[] = [
     id: 'balance_house_xl', 
     name: 'Balance HOUSE XL', 
     status: 'COMPLETED', 
-    basePrice: 224900, 
+    basePrice: 280281, 
     area: 'Do ustalenia',
     details: {
       builtArea: '94 m²',
@@ -693,6 +693,34 @@ const BALANCE_HOUSE_CONFIG: ConfigCategory[] = [
     detailsHtml: DESC_BLINDS
   }
 ];
+
+const BALANCE_HOUSE_XL_CONFIG: ConfigCategory[] = BALANCE_HOUSE_CONFIG.map((category) => {
+  if (category.id === 'base_stage') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) => {
+        if (variant.id === 'raw_closed') {
+          return { ...variant, price: 280281 };
+        }
+        if (variant.id === 'developer') {
+          return { ...variant, price: 410888 };
+        }
+        return variant;
+      })
+    };
+  }
+
+  if (category.id === 'foundation') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) =>
+        variant.id === 'slab' ? { ...variant, price: 90041 } : variant
+      )
+    };
+  }
+
+  return category;
+});
 
 const COMFORT_HOUSE_CONFIG: ConfigCategory[] = [
   {
@@ -1218,7 +1246,7 @@ export const getHouseConfig = (houseId: string): ConfigCategory[] => {
     return BALANCE_HOUSE_CONFIG;
   }
   if (houseId === 'balance_house_xl') {
-    return BALANCE_HOUSE_CONFIG;
+    return BALANCE_HOUSE_XL_CONFIG;
   }
   if (houseId === 'comfort_house') {
     return COMFORT_HOUSE_CONFIG;
