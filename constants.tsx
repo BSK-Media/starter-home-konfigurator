@@ -288,6 +288,22 @@ export const HOUSES: House[] = [
     floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/03/Rzuty-Balance-House-95m2.pdf'
   },
   { 
+    id: 'balance_house_xl', 
+    name: 'Balance HOUSE XL', 
+    status: 'COMPLETED', 
+    basePrice: 224900, 
+    area: 'Do ustalenia',
+    details: {
+      builtArea: '94 m²',
+      usableArea: '80 m²',
+      bedrooms: 3
+    },
+    description: 'Dom o 80 m² powierzchni użytkowej oferuje komfortową przestrzeń dla rodziny. Składa się z trzech sypialni, salonu z aneksem kuchennym oraz łazienki, zapewniając wygodne i funkcjonalne wnętrze do codziennego życia.',
+    image: 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl.webp',
+    images: ['https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl-2.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-balance-house-xl-3.webp'],
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/rzuty-balance-house-xl.pdf'
+  },
+  { 
     id: 'comfort_house', 
     name: 'Comfort HOUSE', 
     status: 'COMPLETED', 
@@ -1199,6 +1215,9 @@ export const getHouseConfig = (houseId: string): ConfigCategory[] => {
     return HAVEN_HOUSE_CONFIG;
   }
   if (houseId === 'balance_house') {
+    return BALANCE_HOUSE_CONFIG;
+  }
+  if (houseId === 'balance_house_xl') {
     return BALANCE_HOUSE_CONFIG;
   }
   if (houseId === 'comfort_house') {
