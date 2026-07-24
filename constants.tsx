@@ -344,12 +344,28 @@ export const HOUSES: House[] = [
     details: {
       builtArea: 'Do ustalenia',
       usableArea: '123 m²',
-      bedrooms: 'Do ustalenia'
+      bedrooms: 3
     },
     description: 'Family House to przestronny dom o powierzchni użytkowej 123 m², zaprojektowany z myślą o wygodzie całej rodziny. Funkcjonalny układ wnętrza zapewnia komfortową przestrzeń do codziennego życia, wypoczynku i wspólnego spędzania czasu.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-family-house-xl-1.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/07/starterhome-family-house-xl-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-family-house-xl.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-family-house-xl-2.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-family-house-xl-3.webp'],
     floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Family-House.pdf'
+  },
+  { 
+    id: 'grand_house', 
+    name: 'Grand HOUSE', 
+    status: 'COMPLETED', 
+    basePrice: 383000, 
+    area: 'Do ustalenia',
+    details: {
+      builtArea: 'Do ustalenia',
+      usableArea: '139 m²',
+      bedrooms: 3
+    },
+    description: 'Grand House to przestronny dom o powierzchni użytkowej 139 m², zaprojektowany z myślą o komforcie całej rodziny. Funkcjonalny układ wnętrza zapewnia wygodną przestrzeń do codziennego życia, wypoczynku i wspólnego spędzania czasu.',
+    image: 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-grand-house.webp',
+    images: ['https://starterhome.pl/wp-content/uploads/2026/07/starterhome-grand-house.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-grand-house-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-grand-house-2.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-grand-house-3.webp'],
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Grand-House-140.pdf'
   },
   { 
     id: 'vista_house', 
@@ -1014,6 +1030,34 @@ const FAMILY_HOUSE_CONFIG: ConfigCategory[] = VISTA_HOUSE_CONFIG.map((category) 
   return category;
 });
 
+const GRAND_HOUSE_CONFIG: ConfigCategory[] = FAMILY_HOUSE_CONFIG.map((category) => {
+  if (category.id === 'base_stage') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) => {
+        if (variant.id === 'raw_closed') {
+          return { ...variant, price: 383000 };
+        }
+        if (variant.id === 'developer') {
+          return { ...variant, price: 545000 };
+        }
+        return variant;
+      })
+    };
+  }
+
+  if (category.id === 'foundation') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) =>
+        variant.id === 'slab' ? { ...variant, price: 128000 } : variant
+      )
+    };
+  }
+
+  return category;
+});
+
 const SKYLINE_HOUSE_CONFIG: ConfigCategory[] = [
   {
     id: 'base_stage',
@@ -1344,6 +1388,9 @@ export const getHouseConfig = (houseId: string): ConfigCategory[] => {
   }
   if (houseId === 'family_house') {
     return FAMILY_HOUSE_CONFIG;
+  }
+  if (houseId === 'grand_house') {
+    return GRAND_HOUSE_CONFIG;
   }
   if (houseId === 'vista_house') {
     return VISTA_HOUSE_CONFIG;
