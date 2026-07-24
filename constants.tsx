@@ -368,6 +368,22 @@ export const HOUSES: House[] = [
     floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Grand-House-140.pdf'
   },
   { 
+    id: 'nova_house', 
+    name: 'Nova HOUSE', 
+    status: 'COMPLETED', 
+    basePrice: 356700, 
+    area: 'Do ustalenia',
+    details: {
+      builtArea: 'Do ustalenia',
+      usableArea: '162 m²',
+      bedrooms: 4
+    },
+    description: 'Nova House to przestronny dom o powierzchni użytkowej 162 m², zaprojektowany z myślą o komforcie większej rodziny. Cztery sypialnie oraz funkcjonalnie zaplanowana przestrzeń zapewniają wygodne warunki do codziennego życia i wypoczynku.',
+    image: 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house-3.webp',
+    images: ['https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house-3.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house-2.webp'],
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Nova-House.pdf'
+  },
+  { 
     id: 'vista_house', 
     name: 'Vista HOUSE', 
     status: 'COMPLETED', 
@@ -1058,6 +1074,34 @@ const GRAND_HOUSE_CONFIG: ConfigCategory[] = FAMILY_HOUSE_CONFIG.map((category) 
   return category;
 });
 
+const NOVA_HOUSE_CONFIG: ConfigCategory[] = GRAND_HOUSE_CONFIG.map((category) => {
+  if (category.id === 'base_stage') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) => {
+        if (variant.id === 'raw_closed') {
+          return { ...variant, price: 356700 };
+        }
+        if (variant.id === 'developer') {
+          return { ...variant, price: 486300 };
+        }
+        return variant;
+      })
+    };
+  }
+
+  if (category.id === 'foundation') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) =>
+        variant.id === 'slab' ? { ...variant, price: 65250 } : variant
+      )
+    };
+  }
+
+  return category;
+});
+
 const SKYLINE_HOUSE_CONFIG: ConfigCategory[] = [
   {
     id: 'base_stage',
@@ -1391,6 +1435,9 @@ export const getHouseConfig = (houseId: string): ConfigCategory[] => {
   }
   if (houseId === 'grand_house') {
     return GRAND_HOUSE_CONFIG;
+  }
+  if (houseId === 'nova_house') {
+    return NOVA_HOUSE_CONFIG;
   }
   if (houseId === 'vista_house') {
     return VISTA_HOUSE_CONFIG;
