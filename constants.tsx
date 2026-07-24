@@ -294,7 +294,7 @@ export const HOUSES: House[] = [
     basePrice: 280281, 
     area: 'Do ustalenia',
     details: {
-      builtArea: '94 m²',
+      builtArea: '118 m²',
       usableArea: '100 m²',
       bedrooms: 3
     },
@@ -326,7 +326,7 @@ export const HOUSES: House[] = [
     basePrice: 318500, 
     area: 'Do ustalenia',
     details: {
-      builtArea: '103 m²',
+      builtArea: '120 m²',
       usableArea: '101 m²',
       bedrooms: 3
     },
@@ -342,7 +342,7 @@ export const HOUSES: House[] = [
     basePrice: 342700, 
     area: 'Do ustalenia',
     details: {
-      builtArea: 'Do ustalenia',
+      builtArea: '157 m²',
       usableArea: '123 m²',
       bedrooms: 3
     },
@@ -358,7 +358,7 @@ export const HOUSES: House[] = [
     basePrice: 383000, 
     area: 'Do ustalenia',
     details: {
-      builtArea: 'Do ustalenia',
+      builtArea: '171 m²',
       usableArea: '139 m²',
       bedrooms: 3
     },
@@ -374,7 +374,7 @@ export const HOUSES: House[] = [
     basePrice: 356700, 
     area: 'Do ustalenia',
     details: {
-      builtArea: 'Do ustalenia',
+      builtArea: '87 m²',
       usableArea: '162 m²',
       bedrooms: 4
     },
