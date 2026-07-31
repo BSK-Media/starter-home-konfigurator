@@ -375,13 +375,13 @@ export const HOUSES: House[] = [
     area: 'Do ustalenia',
     details: {
       builtArea: '87 m²',
-      usableArea: '162 m²',
+      usableArea: '125 m²',
       bedrooms: 4
     },
-    description: 'Nova House to przestronny dom o powierzchni użytkowej 162 m², zaprojektowany z myślą o komforcie większej rodziny. Cztery sypialnie oraz funkcjonalnie zaplanowana przestrzeń zapewniają wygodne warunki do codziennego życia i wypoczynku.',
+    description: 'Nova House to przestronny dom o powierzchni użytkowej 125 m², zaprojektowany z myślą o komforcie większej rodziny. Cztery sypialnie oraz funkcjonalnie zaplanowana przestrzeń zapewniają wygodne warunki do codziennego życia i wypoczynku.',
     image: 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house-3.webp',
     images: ['https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house-3.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house-1.webp', 'https://starterhome.pl/wp-content/uploads/2026/07/starterhome-nova-house-2.webp'],
-    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Nova-House.pdf'
+    floorPlanPdf: 'https://starterhome.pl/wp-content/uploads/2026/07/Rzuty-Nova-House-akt.pdf'
   },
   { 
     id: 'vista_house', 
