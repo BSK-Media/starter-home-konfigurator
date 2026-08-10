@@ -31,7 +31,7 @@ const SiteHeader: React.FC<Props> = ({ onShowModels }) => {
     },
     { label: 'Technologia', href: 'https://starterhome.pl/technologia/', isExternal: true },
     { label: 'O nas', href: 'https://starterhome.pl/o-nas/', isExternal: true },
-    { label: 'Nasze realizacje', href: 'https://starterhome.pl/realizacje/', isExternal: true },
+    { label: 'Nasze realizacje', href: 'https://starterhome.pl/nasze-realizacje/', isExternal: true },
     { label: 'Finansowanie', href: 'https://starterhome.pl/finansowanie/', isExternal: true },
     { label: 'Kontakt', href: 'https://starterhome.pl/kontakt/', isExternal: true },
   ];
