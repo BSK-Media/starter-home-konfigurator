@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import emailjs from '@emailjs/browser';
-import { HOUSES, getHouseConfig } from './constants';
+import { HOUSES, formatPrice, getHouseConfig } from './constants';
 import { UserSelection, InputType, House } from './types';
 import { OptionCard } from './components/OptionCard';
 import ImageGallery from './components/ImageGallery';
@@ -215,7 +215,7 @@ export const App: React.FC = () => {
         from_email: formData.email,
         phone: formData.phone,
         house_model: selectedHouse?.name,
-        total_price: `${totalPrice.toLocaleString()} PLN netto`,
+        total_price: `${formatPrice(totalPrice)} PLN brutto`,
         has_land: formData.hasLand === 'yes' ? 'Tak' : (formData.hasLand === 'no' ? 'Nie' : 'Nie zaznaczono'),
         message: formData.note,
         configuration: selectedItemsList.map(i => `${i.category}: ${i.label}`).join('\n')
@@ -296,7 +296,7 @@ export const App: React.FC = () => {
 
                             <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
                                 <span className="text-sm font-bold text-gray-500">
-                                    {house.basePrice > 0 ? `od ${house.basePrice.toLocaleString()} zł` : 'Wycena indyw.'}
+                                    {house.basePrice > 0 ? `od ${formatPrice(house.basePrice)} zł` : 'Wycena indyw.'}
                                 </span>
                                 <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#729c36] transition-colors">
                                     <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-white" />
@@ -345,10 +345,10 @@ export const App: React.FC = () => {
                         </h1>
                         <div className="text-2xl font-bold text-[#729c36] mb-8 flex items-baseline gap-2">
                             {selectedHouse.basePrice > 0 
-                                ? `Cena od: ${selectedHouse.basePrice.toLocaleString()} zł`
+                                ? `Cena od: ${formatPrice(selectedHouse.basePrice)} zł`
                                 : 'Cena: Wycena indywidualna'
                             }
-                            <span className="text-sm font-normal text-gray-400">netto (Stan surowy)</span>
+                            <span className="text-sm font-normal text-gray-400">brutto (Stan surowy)</span>
                         </div>
                         
                         <p className="text-gray-600 leading-relaxed mb-10 text-lg font-light">
@@ -511,7 +511,7 @@ export const App: React.FC = () => {
                                 <span className="text-gray-800 font-medium">{item.label}</span>
                             </div>
                             <span className="font-bold text-[#729c36] whitespace-nowrap bg-[#f7faf3] px-2 py-1 text-xs">
-                            {item.price === 0 ? 'W cenie' : `+ ${item.price.toLocaleString()} zł`}
+                            {item.price === 0 ? 'W cenie' : `+ ${formatPrice(item.price)} zł`}
                             </span>
                         </div>
                         ))}
@@ -525,7 +525,7 @@ export const App: React.FC = () => {
       Wyceniany indywidualnie
     </span>
     <span className="block text-[11px] text-gray-400 mt-1">
-      Zakres 3000–7000 zł netto
+      Zakres 3 240–7 560 zł brutto
     </span>
   </div>
   <span className="font-bold text-gray-500 whitespace-nowrap bg-gray-50 px-2 py-1 text-xs">
@@ -539,8 +539,8 @@ export const App: React.FC = () => {
                         <div className="flex justify-between items-end">
                             <span className="text-sm font-medium text-gray-500 uppercase tracking-widest">Suma dodatków</span>
                             <span className="text-xl font-bold text-gray-900">
-                                {totalPrice.toLocaleString()} zł
-                                <span className="block text-[10px] text-gray-400 font-normal text-right uppercase mt-1">netto</span>
+                                {formatPrice(totalPrice)} zł
+                                <span className="block text-[10px] text-gray-400 font-normal text-right uppercase mt-1">brutto</span>
                             </span>
                         </div>
                     </div>
@@ -565,7 +565,7 @@ export const App: React.FC = () => {
              <div className="flex flex-col items-center sm:items-start">
                 <div className="text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest font-bold mb-1">Całkowity koszt inwestycji</div>
                 <div className="text-3xl sm:text-4xl font-black text-[#729c36] leading-none tracking-tight">
-                    {totalPrice.toLocaleString()} <span className="text-lg text-gray-400 font-normal ml-1">PLN <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">netto</span></span>
+                    {formatPrice(totalPrice)} <span className="text-lg text-gray-400 font-normal ml-1">PLN <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">brutto</span></span>
                 </div>
              </div>
 
@@ -840,7 +840,7 @@ export const App: React.FC = () => {
                                 <>
                                     <span>Wyślij formularz</span>
                                     <div className="w-px h-4 bg-white/30 mx-2"></div>
-                                    <span className="font-normal normal-case opacity-90">Razem: {totalPrice.toLocaleString()} zł</span>
+                                    <span className="font-normal normal-case opacity-90">Razem: {formatPrice(totalPrice)} zł</span>
                                     <Send className="w-4 h-4 ml-1" />
                                 </>
                             )}
