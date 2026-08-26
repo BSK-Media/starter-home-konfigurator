@@ -16,6 +16,13 @@ import {
 // DESCRIPTIONS FROM PDF
 // ==========================================
 
+const VAT_RATE = 0.08;
+const toGrossPrice = (netPrice: number) => Math.round(netPrice * (1 + VAT_RATE) * 100) / 100;
+export const formatPrice = (price: number) => price.toLocaleString('pl-PL', {
+  minimumFractionDigits: Number.isInteger(price) ? 0 : 2,
+  maximumFractionDigits: 2
+});
+
 const DESC_RAW_CLOSED = `
 <p><strong>Stan surowy zamknięty to etap, w którym Twój dom ma już zamkniętą, bezpieczną bryłę, ale nie jest jeszcze domem gotowym do zamieszkania.</strong></p>
 <br/>
@@ -238,7 +245,7 @@ const DESC_BLINDS = `
 <p>W cenie zawarta jest dostawa, montaż na elewacji/oknie, podłączenie sterowania (elektryczne) i regulacja.</p>
 `;
 
-export const HOUSES: House[] = [
+const HOUSES_NET: House[] = [
   { 
     id: 'nest_house', 
     name: 'NEST HOUSE', 
@@ -403,7 +410,7 @@ export const HOUSES: House[] = [
     id: 'peak_house', 
     name: 'Peak HOUSE', 
     status: 'COMPLETED', 
-    basePrice: 274700, 
+    basePrice: 289700, 
     area: 'Do ustalenia',
     details: {
       builtArea: '67 m²',
@@ -449,8 +456,20 @@ export const HOUSES: House[] = [
   },
 ];
 
+export const HOUSES: House[] = HOUSES_NET.map((house) => ({
+  ...house,
+  basePrice: toGrossPrice(house.basePrice)
+}));
+
 // Common PV Info Text
-const PV_INFO_TEXT = 'W instalacjach stosujemy: Panele Ja Solar Bifacial 500W (czarna rama), falownik hybrydowy Deye, magazyn energii Deye lub Kon-Tec. Wizualizacja oraz wycena jest orientacyjna (brak dokładnego projektu dachu).';
+const PV_INFO_TEXT = 'W instalacjach stosujemy panele JH Solar o mocy 550W, falownik hybrydowy Deye oraz magazyn energii Dyness 10,24kWh. Wizualizacja oraz wycena są orientacyjne (brak dokładnego projektu dachu).';
+
+const PV_VARIANTS = [
+  { id: 'none', label: 'Brak', price: 0 },
+  { id: 'pv_4_4', label: '4,4 kWp + Magazyn energii 10,24 kWh', price: 35000, description: '8 paneli JH Solar 550W, falownik hybrydowy Deye 5kW i magazyn energii Dyness 10,24kWh.', detailsHtml: DESC_PV },
+  { id: 'pv_5_5', label: '5,5 kWp + Magazyn energii 10,24 kWh', price: 38000, description: '10 paneli JH Solar 550W, falownik hybrydowy Deye 5kW i magazyn energii Dyness 10,24kWh.', detailsHtml: DESC_PV },
+  { id: 'pv_7_7', label: '7,7 kWp + Magazyn energii 10,24 kWh', price: 43000, description: '14 paneli JH Solar 550W, falownik hybrydowy Deye 8kW i magazyn energii Dyness 10,24kWh.', detailsHtml: DESC_PV }
+];
 
 const NEST_HOUSE_CONFIG: ConfigCategory[] = [
   {
@@ -513,11 +532,7 @@ const NEST_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Sun',
     inputType: InputType.RADIO,
     info: PV_INFO_TEXT,
-    variants: [
-      { id: 'none', label: 'Brak', price: 0 },
-      { id: 'standard', label: '4kW + Magazyn 10.24kWh', price: 20000, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 10,24kWh', detailsHtml: DESC_PV },
-      { id: 'backup', label: '4kW + Magazyn 10.24kWh + Zasilanie Awaryjne', price: 21500, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 10,24kWh + Zasilanie awaryjne (+1500zł)', detailsHtml: DESC_PV }
-    ]
+    variants: PV_VARIANTS
   },
   {
     id: 'septic',
@@ -615,11 +630,7 @@ const HAVEN_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Sun',
     inputType: InputType.RADIO,
     info: PV_INFO_TEXT,
-    variants: [
-      { id: 'none', label: 'Brak', price: 0 },
-      { id: 'standard', label: '4kW + Magazyn 10.24kWh', price: 20000, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 10,24kWh', detailsHtml: DESC_PV },
-      { id: 'backup', label: '4kW + Magazyn 10.24kWh + Zasilanie Awaryjne', price: 21500, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 10,24kWh + Zasilanie awaryjne (+1500zł)', detailsHtml: DESC_PV }
-    ]
+    variants: PV_VARIANTS
   },
   {
     id: 'septic',
@@ -694,9 +705,9 @@ const BALANCE_HOUSE_CONFIG: ConfigCategory[] = [
     inputType: InputType.SELECT, 
     variants: [
       { id: 'none', label: 'Brak ogrzewania', price: 0 },
-      { id: 'floor_electric', label: 'Ogrzewanie podłogowe elektryczne', price: 39050, detailsHtml: DESC_HEATING_FLOOR_ELECTRIC },
-      { id: 'floor_water_pump', label: 'Podłogowe wodne + Pompa ciepła + Wylewka', price: 67200, detailsHtml: DESC_HEATING_PUMP },
-      { id: 'floor_water_only', label: 'Podłogowe wodne (samo rozłożenie) + Klient kupuje pompę', price: 30800, detailsHtml: DESC_HEATING_WATER_ONLY },
+      { id: 'floor_electric', label: 'Ogrzewanie podłogowe elektryczne', price: 32000, detailsHtml: DESC_HEATING_FLOOR_ELECTRIC },
+      { id: 'floor_water_pump', label: 'Podłogowe wodne + Pompa ciepła + Wylewka', price: 62200, detailsHtml: DESC_HEATING_PUMP },
+      { id: 'floor_water_only', label: 'Podłogowe wodne (samo rozłożenie) + Klient kupuje pompę', price: 28000, detailsHtml: DESC_HEATING_WATER_ONLY },
       { id: 'ac_heat', label: 'Klimatyzator z funkcją grzania 5kW', price: 7000, detailsHtml: DESC_HEATING_AC }
     ]
   },
@@ -717,11 +728,7 @@ const BALANCE_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Sun',
     inputType: InputType.RADIO,
     info: PV_INFO_TEXT,
-    variants: [
-      { id: 'none', label: 'Brak', price: 0 },
-      { id: 'standard', label: '10kW + Magazyn 15.36kWh', price: 42685, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 15,36kWh', detailsHtml: DESC_PV },
-      { id: 'backup', label: '10kW + Magazyn 15.36kWh + Zasilanie Awaryjne', price: 44185, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 15,36kWh + Zasilanie awaryjne (+1500zł)', detailsHtml: DESC_PV }
-    ]
+    variants: PV_VARIANTS
   },
   {
     id: 'septic',
@@ -783,6 +790,18 @@ const BALANCE_HOUSE_XL_CONFIG: ConfigCategory[] = BALANCE_HOUSE_CONFIG.map((cate
     };
   }
 
+  if (category.id === 'heating') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) => {
+        if (variant.id === 'floor_electric') return { ...variant, price: 39050 };
+        if (variant.id === 'floor_water_pump') return { ...variant, price: 67200 };
+        if (variant.id === 'floor_water_only') return { ...variant, price: 35000 };
+        return variant;
+      })
+    };
+  }
+
   return category;
 });
 
@@ -824,9 +843,9 @@ const COMFORT_HOUSE_CONFIG: ConfigCategory[] = [
     inputType: InputType.SELECT, 
     variants: [
       { id: 'none', label: 'Brak ogrzewania', price: 0 },
-      { id: 'floor_electric', label: 'Ogrzewanie podłogowe elektryczne', price: 42300, detailsHtml: DESC_HEATING_FLOOR_ELECTRIC },
-      { id: 'floor_water_pump', label: 'Podłogowe wodne + Pompa ciepła + Wylewka', price: 68800, detailsHtml: DESC_HEATING_PUMP },
-      { id: 'floor_water_only', label: 'Podłogowe wodne (samo rozłożenie) + Klient kupuje pompę', price: 33800, detailsHtml: DESC_HEATING_WATER_ONLY },
+      { id: 'floor_electric', label: 'Ogrzewanie podłogowe elektryczne', price: 33000, detailsHtml: DESC_HEATING_FLOOR_ELECTRIC },
+      { id: 'floor_water_pump', label: 'Podłogowe wodne + Pompa ciepła + Wylewka', price: 64000, detailsHtml: DESC_HEATING_PUMP },
+      { id: 'floor_water_only', label: 'Podłogowe wodne (samo rozłożenie) + Klient kupuje pompę', price: 30100, detailsHtml: DESC_HEATING_WATER_ONLY },
       { id: 'ac_heat', label: 'Klimatyzator 5kW z funkcją grzania', price: 8000, detailsHtml: DESC_HEATING_AC }
     ]
   },
@@ -847,11 +866,7 @@ const COMFORT_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Sun',
     inputType: InputType.RADIO,
     info: PV_INFO_TEXT,
-    variants: [
-      { id: 'none', label: 'Brak', price: 0 },
-      { id: 'standard', label: '5.5kW + Magazyn 10.24kWh', price: 20000, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 10,24kWh', detailsHtml: DESC_PV },
-      { id: 'backup', label: '5.5kW + Magazyn 10.24kWh + Zasilanie Awaryjne', price: 21500, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 10,24kWh + Zasilanie awaryjne (+1500zł)', detailsHtml: DESC_PV }
-    ]
+    variants: PV_VARIANTS
   },
   {
     id: 'septic',
@@ -913,6 +928,18 @@ const COMFORT_HOUSE_XL_CONFIG: ConfigCategory[] = COMFORT_HOUSE_CONFIG.map((cate
     };
   }
 
+  if (category.id === 'heating') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) => {
+        if (variant.id === 'floor_electric') return { ...variant, price: 42300 };
+        if (variant.id === 'floor_water_pump') return { ...variant, price: 68800 };
+        if (variant.id === 'floor_water_only') return { ...variant, price: 35000 };
+        return variant;
+      })
+    };
+  }
+
   return category;
 });
 
@@ -954,8 +981,8 @@ const VISTA_HOUSE_CONFIG: ConfigCategory[] = [
     inputType: InputType.SELECT, 
     variants: [
       { id: 'none', label: 'Brak ogrzewania', price: 0 },
-      { id: 'floor_electric', label: 'Ogrzewanie podłogowe elektryczne', price: 55100, detailsHtml: DESC_HEATING_FLOOR_ELECTRIC },
-      { id: 'floor_water_pump', label: 'Podłogowe wodne + Pompa ciepła + Wylewka', price: 77600, detailsHtml: DESC_HEATING_PUMP },
+      { id: 'floor_electric', label: 'Ogrzewanie podłogowe elektryczne', price: 45000, detailsHtml: DESC_HEATING_FLOOR_ELECTRIC },
+      { id: 'floor_water_pump', label: 'Podłogowe wodne + Pompa ciepła + Wylewka', price: 72700, detailsHtml: DESC_HEATING_PUMP },
       { id: 'floor_water_only', label: 'Podłogowe wodne (samo rozłożenie) + Klient kupuje pompę', price: 37800, detailsHtml: DESC_HEATING_WATER_ONLY },
       { id: 'ac_heat', label: 'Klimatyzator z funkcją grzania', price: 8000, detailsHtml: DESC_HEATING_AC }
     ]
@@ -977,11 +1004,7 @@ const VISTA_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Sun',
     inputType: InputType.RADIO,
     info: PV_INFO_TEXT,
-    variants: [
-      { id: 'none', label: 'Brak', price: 0 },
-      { id: 'standard', label: '10kW + Magazyn 15.36kWh', price: 20000, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 15,36kWh', detailsHtml: DESC_PV },
-      { id: 'backup', label: '10kW + Magazyn 15.36kWh + Zasilanie Awaryjne', price: 21500, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 15,36kWh + Zasilanie awaryjne (+1500zł)', detailsHtml: DESC_PV }
-    ]
+    variants: PV_VARIANTS
   },
   {
     id: 'septic',
@@ -1043,6 +1066,18 @@ const FAMILY_HOUSE_CONFIG: ConfigCategory[] = VISTA_HOUSE_CONFIG.map((category) 
     };
   }
 
+  if (category.id === 'heating') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) => {
+        if (variant.id === 'floor_electric') return { ...variant, price: 49000 };
+        if (variant.id === 'floor_water_pump') return { ...variant, price: 82700 };
+        if (variant.id === 'floor_water_only') return { ...variant, price: 42000 };
+        return variant;
+      })
+    };
+  }
+
   return category;
 });
 
@@ -1071,6 +1106,18 @@ const GRAND_HOUSE_CONFIG: ConfigCategory[] = FAMILY_HOUSE_CONFIG.map((category) 
     };
   }
 
+  if (category.id === 'heating') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) => {
+        if (variant.id === 'floor_electric') return { ...variant, price: 52700 };
+        if (variant.id === 'floor_water_pump') return { ...variant, price: 85700 };
+        if (variant.id === 'floor_water_only') return { ...variant, price: 49000 };
+        return variant;
+      })
+    };
+  }
+
   return category;
 });
 
@@ -1096,6 +1143,18 @@ const NOVA_HOUSE_CONFIG: ConfigCategory[] = GRAND_HOUSE_CONFIG.map((category) =>
       variants: category.variants?.map((variant) =>
         variant.id === 'slab' ? { ...variant, price: 65250 } : variant
       )
+    };
+  }
+
+  if (category.id === 'heating') {
+    return {
+      ...category,
+      variants: category.variants?.map((variant) => {
+        if (variant.id === 'floor_electric') return { ...variant, price: 49700 };
+        if (variant.id === 'floor_water_pump') return { ...variant, price: 82700 };
+        if (variant.id === 'floor_water_only') return { ...variant, price: 43750 };
+        return variant;
+      })
     };
   }
 
@@ -1163,11 +1222,7 @@ const SKYLINE_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Sun',
     inputType: InputType.RADIO,
     info: PV_INFO_TEXT,
-    variants: [
-      { id: 'none', label: 'Brak', price: 0 },
-      { id: 'standard', label: '3.5kW + Magazyn 5.3kWh', price: 20000, description: 'Falownik Hybrydowy Deye + Magazyn energii Kon-Tec 5,3kWh', detailsHtml: DESC_PV },
-      { id: 'backup', label: '3.5kW + Magazyn 5.3kWh + Zasilanie Awaryjne', price: 21500, description: 'Falownik Hybrydowy Deye + Magazyn energii Kon-Tec 5,3kWh + Zasilanie awaryjne (+1500zł)', detailsHtml: DESC_PV }
-    ]
+    variants: PV_VARIANTS
   },
   {
     id: 'septic',
@@ -1265,11 +1320,7 @@ const ZENITH_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Sun',
     inputType: InputType.RADIO,
     info: PV_INFO_TEXT,
-    variants: [
-      { id: 'none', label: 'Brak', price: 0 },
-      { id: 'standard', label: '3.5kW + Magazyn 5.3kWh', price: 20000, description: 'Falownik Hybrydowy Deye + Magazyn energii Kon-Tec 5,3kWh', detailsHtml: DESC_PV },
-      { id: 'backup', label: '3.5kW + Magazyn 5.3kWh + Zasilanie Awaryjne', price: 21500, description: 'Falownik Hybrydowy Deye + Magazyn energii Kon-Tec 5,3kWh + Zasilanie awaryjne (+1500zł)', detailsHtml: DESC_PV }
-    ]
+    variants: PV_VARIANTS
   },
   {
     id: 'septic',
@@ -1313,8 +1364,8 @@ const PEAK_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Home',
     inputType: InputType.RADIO,
     variants: [
-      { id: 'raw_closed', label: 'Stan surowy zamknięty', price: 274700, description: 'Konstrukcja, ściany, dach, okna, drzwi zewnętrzne.', detailsHtml: DESC_RAW_CLOSED },
-      { id: 'developer', label: 'Stan deweloperski', price: 374500, description: 'Instalacje, tynki, wylewki, ocieplenie.', detailsHtml: DESC_DEVELOPER }
+      { id: 'raw_closed', label: 'Stan surowy zamknięty', price: 289700, description: 'Konstrukcja, ściany, dach, okna, drzwi zewnętrzne.', detailsHtml: DESC_RAW_CLOSED },
+      { id: 'developer', label: 'Stan deweloperski', price: 397200, description: 'Instalacje, tynki, wylewki, ocieplenie.', detailsHtml: DESC_DEVELOPER }
     ]
   },
   {
@@ -1344,9 +1395,9 @@ const PEAK_HOUSE_CONFIG: ConfigCategory[] = [
     inputType: InputType.SELECT, 
     variants: [
       { id: 'none', label: 'Brak ogrzewania', price: 0 },
-      { id: 'floor_electric', label: 'Ogrzewanie podłogowe elektryczne', price: 27700, detailsHtml: DESC_HEATING_FLOOR_ELECTRIC },
-      { id: 'floor_water_pump', label: 'Podłogowe wodne + Pompa ciepła + Wylewka', price: 58800, detailsHtml: DESC_HEATING_PUMP },
-      { id: 'floor_water_only', label: 'Podłogowe wodne (samo rozłożenie) + Klient kupuje pompę', price: 23800, detailsHtml: DESC_HEATING_WATER_ONLY },
+      { id: 'floor_electric', label: 'Ogrzewanie podłogowe elektryczne', price: 38700, detailsHtml: DESC_HEATING_FLOOR_ELECTRIC },
+      { id: 'floor_water_pump', label: 'Podłogowe wodne + Pompa ciepła + Wylewka', price: 75900, detailsHtml: DESC_HEATING_PUMP },
+      { id: 'floor_water_only', label: 'Podłogowe wodne (samo rozłożenie) + Klient kupuje pompę', price: 38500, detailsHtml: DESC_HEATING_WATER_ONLY },
       { id: 'ac_heat', label: 'Klimatyzator z funkcją grzania', price: 7000, detailsHtml: DESC_HEATING_AC }
     ]
   },
@@ -1367,11 +1418,7 @@ const PEAK_HOUSE_CONFIG: ConfigCategory[] = [
     iconName: 'Sun',
     inputType: InputType.RADIO,
     info: PV_INFO_TEXT,
-    variants: [
-      { id: 'none', label: 'Brak', price: 0 },
-      { id: 'standard', label: '8kW + Magazyn 10.24kWh', price: 20000, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 10,24kWh', detailsHtml: DESC_PV },
-      { id: 'backup', label: '8kW + Magazyn 10.24kWh + Zasilanie Awaryjne', price: 21500, description: 'Falownik Hybrydowy Deye + Magazyn energii Deye 10,24kWh + Zasilanie awaryjne (+1500zł)', detailsHtml: DESC_PV }
-    ]
+    variants: PV_VARIANTS
   },
   {
     id: 'septic',
@@ -1411,49 +1458,86 @@ const PEAK_HOUSE_CONFIG: ConfigCategory[] = [
 // Fallback config for other houses (can be replaced later)
 const DEFAULT_CONFIG = NEST_HOUSE_CONFIG.map(c => ({...c}));
 
+const GROSS_PRICE_OVERRIDES: Record<string, Record<string, number>> = {
+  balance_house: {
+    'heating.floor_electric': 32000,
+    'heating.floor_water_only': 28000
+  },
+  balance_house_xl: {
+    'heating.floor_water_only': 35000
+  },
+  comfort_house: {
+    'heating.floor_water_only': 30100
+  },
+  comfort_house_xl: {
+    'heating.floor_water_only': 35000
+  },
+  vista_house: {
+    'heating.floor_water_only': 37800
+  },
+  family_house: {
+    'heating.floor_water_only': 42000
+  },
+  grand_house: {
+    'heating.floor_water_only': 49000
+  },
+  nova_house: {
+    'heating.floor_water_only': 43750
+  },
+  peak_house: {
+    'heating.floor_water_only': 38500
+  }
+};
+
+const toGrossConfig = (houseId: string, config: ConfigCategory[]): ConfigCategory[] =>
+  config.map((category) => ({
+    ...category,
+    basePrice: category.basePrice === undefined ? undefined : toGrossPrice(category.basePrice),
+    unitPrice: category.unitPrice === undefined ? undefined : toGrossPrice(category.unitPrice),
+    variants: category.variants?.map((variant) => {
+      const override = GROSS_PRICE_OVERRIDES[houseId]?.[`${category.id}.${variant.id}`];
+
+      return {
+        ...variant,
+        price: override ?? toGrossPrice(variant.price)
+      };
+    })
+  }));
+
 export const getHouseConfig = (houseId: string): ConfigCategory[] => {
+  let config: ConfigCategory[];
+
   if (houseId === 'nest_house') {
-    return NEST_HOUSE_CONFIG;
+    config = NEST_HOUSE_CONFIG;
+  } else if (houseId === 'haven_house') {
+    config = HAVEN_HOUSE_CONFIG;
+  } else if (houseId === 'balance_house') {
+    config = BALANCE_HOUSE_CONFIG;
+  } else if (houseId === 'balance_house_xl') {
+    config = BALANCE_HOUSE_XL_CONFIG;
+  } else if (houseId === 'comfort_house') {
+    config = COMFORT_HOUSE_CONFIG;
+  } else if (houseId === 'comfort_house_xl') {
+    config = COMFORT_HOUSE_XL_CONFIG;
+  } else if (houseId === 'family_house') {
+    config = FAMILY_HOUSE_CONFIG;
+  } else if (houseId === 'grand_house') {
+    config = GRAND_HOUSE_CONFIG;
+  } else if (houseId === 'nova_house') {
+    config = NOVA_HOUSE_CONFIG;
+  } else if (houseId === 'vista_house') {
+    config = VISTA_HOUSE_CONFIG;
+  } else if (houseId === 'peak_house') {
+    config = PEAK_HOUSE_CONFIG;
+  } else if (houseId === 'skyline_house') {
+    config = SKYLINE_HOUSE_CONFIG;
+  } else if (houseId === 'zenith_house') {
+    config = ZENITH_HOUSE_CONFIG;
+  } else {
+    config = DEFAULT_CONFIG;
   }
-  if (houseId === 'haven_house') {
-    return HAVEN_HOUSE_CONFIG;
-  }
-  if (houseId === 'balance_house') {
-    return BALANCE_HOUSE_CONFIG;
-  }
-  if (houseId === 'balance_house_xl') {
-    return BALANCE_HOUSE_XL_CONFIG;
-  }
-  if (houseId === 'comfort_house') {
-    return COMFORT_HOUSE_CONFIG;
-  }
-  if (houseId === 'comfort_house_xl') {
-    return COMFORT_HOUSE_XL_CONFIG;
-  }
-  if (houseId === 'family_house') {
-    return FAMILY_HOUSE_CONFIG;
-  }
-  if (houseId === 'grand_house') {
-    return GRAND_HOUSE_CONFIG;
-  }
-  if (houseId === 'nova_house') {
-    return NOVA_HOUSE_CONFIG;
-  }
-  if (houseId === 'vista_house') {
-    return VISTA_HOUSE_CONFIG;
-  }
-  if (houseId === 'peak_house') {
-    return PEAK_HOUSE_CONFIG;
-  }
-  if (houseId === 'skyline_house') {
-    return SKYLINE_HOUSE_CONFIG;
-  }
-  if (houseId === 'zenith_house') {
-    return ZENITH_HOUSE_CONFIG;
-  }
-  // For now, return the same structure for others, but marked as placeholders if needed
-  // Or simply return default to avoid crashing
-  return DEFAULT_CONFIG;
+
+  return toGrossConfig(houseId, config);
 };
 
 // Helper to map string name to component
