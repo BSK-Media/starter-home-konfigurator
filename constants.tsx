@@ -17,7 +17,7 @@ import {
 // ==========================================
 
 const VAT_RATE = 0.08;
-const toGrossPrice = (netPrice: number) => Math.round(netPrice * (1 + VAT_RATE) * 100) / 100;
+const toGrossPrice = (netPrice: number) => Math.round(netPrice * (1 + VAT_RATE));
 export const formatPrice = (price: number) => price.toLocaleString('pl-PL', {
   minimumFractionDigits: Number.isInteger(price) ? 0 : 2,
   maximumFractionDigits: 2
