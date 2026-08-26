@@ -28,10 +28,36 @@ import {
   Search,
   Phone
 } from 'lucide-react';
-
+const getHouseFromUrl = (): House | null => {
+  const modelId = new URLSearchParams(window.location.search).get('model');
+  return HOUSES.find((house) => house.id === modelId) ?? null;
+};
 export const App: React.FC = () => {
   // Navigation State
-  const [selectedHouse, setSelectedHouse] = useState<House | null>(null);
+  const [selectedHouse, setSelectedHouse] = useState<House | null>(() => getHouseFromUrl());
+
+const selectHouse = (house: House) => {
+  const url = new URL(window.location.href);
+  url.searchParams.set('model', house.id);
+  window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
+  setSelectedHouse(house);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+const showModels = () => {
+  const url = new URL(window.location.href);
+  url.searchParams.delete('model');
+  window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
+  setSelectedHouse(null);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+useEffect(() => {
+  const handlePopState = () => setSelectedHouse(getHouseFromUrl());
+
+  window.addEventListener('popstate', handlePopState);
+  return () => window.removeEventListener('popstate', handlePopState);
+}, []);
 
   // Configurator State
   const [selection, setSelection] = useState<UserSelection>({});
@@ -244,7 +270,7 @@ export const App: React.FC = () => {
   if (!selectedHouse) {
     return (
       <div className="min-h-screen bg-gray-50 font-sans animate-fade-in">
-         <SiteHeader onShowModels={() => setSelectedHouse(null)} />
+         <SiteHeader onShowModels={showModels} />
 
          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="text-center mb-16">
@@ -261,7 +287,7 @@ export const App: React.FC = () => {
                 {HOUSES.map((house) => (
                     <div 
                         key={house.id} 
-                        onClick={() => setSelectedHouse(house)}
+                        onClick={() => selectHouse(house)}
                         className="group bg-white border border-gray-200 hover:border-[#729c36] hover:shadow-[0_10px_40px_-10px_rgba(114,156,54,0.15)] transition-all duration-300 cursor-pointer overflow-hidden flex flex-col"
                     >
                         <div className="relative h-64 overflow-hidden bg-gray-100">
@@ -323,7 +349,7 @@ export const App: React.FC = () => {
       */}
       <div className="animate-fade-in">
         {/* Header */}
-        <SiteHeader onShowModels={() => setSelectedHouse(null)} />
+        <SiteHeader onShowModels={showModels} />
 
         {/* Hero / Specification Section */}
         <section className="bg-white border-b border-gray-200">
