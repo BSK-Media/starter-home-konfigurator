@@ -1,6 +1,6 @@
 import React from 'react';
 import { ConfigCategory, InputType } from '../types';
-import { getIcon } from '../constants';
+import { formatPrice, getIcon } from '../constants';
 import { Check, Plus, Minus, Info } from 'lucide-react';
 
 interface OptionCardProps {
@@ -45,7 +45,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({ category, value, onChang
                           {variant.label}
                         </span>
                         <span className="text-xs sm:text-sm font-bold text-gray-900 whitespace-nowrap">
-                          {variant.price === 0 ? 'W cenie' : `+ ${variant.price.toLocaleString()} zł`}
+                          {variant.price === 0 ? 'W cenie' : `+ ${formatPrice(variant.price)} zł`}
                         </span>
                       </div>
                       {variant.description && (
@@ -103,7 +103,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({ category, value, onChang
                         {variant.label}
                       </span>
                       <span className="text-xs sm:text-sm font-bold text-gray-900 whitespace-nowrap">
-                          {variant.price === 0 ? '-' : `+ ${variant.price.toLocaleString()} zł`}
+                          {variant.price === 0 ? '-' : `+ ${formatPrice(variant.price)} zł`}
                       </span>
                     </div>
                   </div>
@@ -156,7 +156,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({ category, value, onChang
                   Tak, dodaj ten pakiet
                 </span>
                 <span className="text-base sm:text-lg font-bold text-gray-900 whitespace-nowrap">
-                  + {category.basePrice?.toLocaleString()} zł
+                  + {formatPrice(category.basePrice || 0)} zł
                 </span>
               </div>
             </div>
@@ -214,10 +214,10 @@ export const OptionCard: React.FC<OptionCardProps> = ({ category, value, onChang
                 <div className="w-full sm:w-1/2 flex flex-col items-end justify-center border-t sm:border-t-0 sm:border-l border-gray-200 pt-4 sm:pt-0 sm:pl-6">
                     <span className="text-xs sm:text-sm text-gray-500 mb-1">Koszt dodatkowy:</span>
                     <span className="text-xl sm:text-2xl font-bold text-[#729c36]">
-                       + {((value || 0) * (category.unitPrice || 0)).toLocaleString()} zł
+                       + {formatPrice((value || 0) * (category.unitPrice || 0))} zł
                     </span>
                     <span className="text-[10px] sm:text-xs text-gray-400 mt-1">
-                        ({category.unitPrice?.toLocaleString()} zł / {category.unitLabel})
+                        ({formatPrice(category.unitPrice || 0)} zł / {category.unitLabel})
                     </span>
                 </div>
              </div>
