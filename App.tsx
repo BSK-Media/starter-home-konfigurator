@@ -600,6 +600,11 @@ useEffect(() => {
                 </div>
              </div>
 
+             {/* Loan Calculator - mobile */}
+             <button type="button" onClick={() => setIsCreditOpen(o => !o)} className="sm:hidden w-full border border-[#729c36] text-[#729c36] text-xs uppercase tracking-widest font-bold py-2">
+                {isCreditOpen ? "Ukryj oferty kredytu ↓" : `Sprawdź ratę kredytu · ok. ${monthlyInstallment.toLocaleString()} zł/mc ↑`}
+             </button>
+
              {/* Loan Calculator */}
              <div className="hidden sm:flex flex-col items-start pl-8 border-l border-gray-200 justify-center">
                 <div className="flex items-center gap-1 group relative cursor-help">
