@@ -66,6 +66,7 @@ useEffect(() => {
   
   // Modals State
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isCreditOpen, setIsCreditOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
   
@@ -505,9 +506,6 @@ useEffect(() => {
                     </div>
                 ))}
                 </div>
-
-                {/* Kalkulator kredytu Credit Space */}
-                <CreditSpaceCalculator price={totalPrice} houseId={selectedHouse.id} />
             </div>
 
             {/* Right Column: Summary List (Sticky on Desktop only) */}
@@ -587,6 +585,9 @@ useEffect(() => {
       <SiteFooter />
 
       <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-4px_30px_rgba(0,0,0,0.08)] z-40">
+        {selectedHouse && (
+          <CreditSpaceCalculator price={totalPrice} houseId={selectedHouse.id} open={isCreditOpen} onClose={() => setIsCreditOpen(false)} />
+        )}
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 py-4 gap-4">
           
           <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-10 w-full md:w-auto">
@@ -617,9 +618,9 @@ useEffect(() => {
                 <div className="text-xl font-bold text-gray-700 leading-none mt-1">
                     {monthlyInstallment.toLocaleString()} <span className="text-xs text-gray-400 font-normal">PLN / mc</span>
                 </div>
-                <a href="#kredyt" className="text-[10px] uppercase tracking-widest font-bold text-[#729c36] hover:text-[#5d822b] mt-1">
-                    Oferty banków →
-                </a>
+                <button type="button" onClick={() => setIsCreditOpen(o => !o)} className="text-[10px] uppercase tracking-widest font-bold text-[#729c36] hover:text-[#5d822b] mt-1">
+                    {isCreditOpen ? "Ukryj oferty ↓" : "Oferty banków ↑"}
+                </button>
              </div>
           </div>
 
