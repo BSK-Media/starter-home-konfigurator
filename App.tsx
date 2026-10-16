@@ -7,6 +7,7 @@ import ImageGallery from './components/ImageGallery';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
 import InvestmentCostTable from "./components/InvestmentCostTable";
+import CreditSpaceCalculator from "./components/CreditSpaceCalculator";
 import { 
   Receipt, 
   CheckCircle2, 
@@ -504,6 +505,9 @@ useEffect(() => {
                     </div>
                 ))}
                 </div>
+
+                {/* Kalkulator kredytu Credit Space */}
+                <CreditSpaceCalculator price={totalPrice} houseId={selectedHouse.id} />
             </div>
 
             {/* Right Column: Summary List (Sticky on Desktop only) */}
@@ -596,7 +600,7 @@ useEffect(() => {
              </div>
 
              {/* Loan Calculator */}
-             <div className="hidden sm:flex flex-col items-start pl-8 border-l border-gray-200 h-10 justify-center">
+             <div className="hidden sm:flex flex-col items-start pl-8 border-l border-gray-200 justify-center">
                 <div className="flex items-center gap-1 group relative cursor-help">
                     <span className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Rata (20 lat)</span>
                     <Info className="w-3 h-3 text-gray-300" />
@@ -613,6 +617,9 @@ useEffect(() => {
                 <div className="text-xl font-bold text-gray-700 leading-none mt-1">
                     {monthlyInstallment.toLocaleString()} <span className="text-xs text-gray-400 font-normal">PLN / mc</span>
                 </div>
+                <a href="#kredyt" className="text-[10px] uppercase tracking-widest font-bold text-[#729c36] hover:text-[#5d822b] mt-1">
+                    Oferty banków →
+                </a>
              </div>
           </div>
 
