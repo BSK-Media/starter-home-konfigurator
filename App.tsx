@@ -603,15 +603,15 @@ useEffect(() => {
              {/* Loan Calculator */}
              <div className="hidden sm:flex flex-col items-start pl-8 border-l border-gray-200 justify-center">
                 <div className="flex items-center gap-1 group relative cursor-help">
-                    <span className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Rata (20 lat)</span>
+                    <span className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Rata orientacyjna</span>
                     <Info className="w-3 h-3 text-gray-300" />
                     
                     {/* Tooltip */}
                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 p-4 bg-gray-900 text-white text-xs text-center hidden group-hover:block z-50 shadow-xl">
-                        <p className="font-bold mb-1">Symulacja kredytu</p>
-                        <p className="opacity-80">Okres: 20 lat (240 rat)</p>
+                        <p className="font-bold mb-1">Orientacyjna symulacja kredytu</p>
+                        <p className="opacity-80">Okres: 20 lat (240 rat), bez wkładu własnego</p>
                         <p className="opacity-80">RRSO: 10%</p>
-                        <p className="mt-2 text-[10px] opacity-60 border-t border-gray-700 pt-2">To jest tylko symulacja. Ostateczna oferta zależy od banku.</p>
+                        <p className="mt-2 text-[10px] opacity-60 border-t border-gray-700 pt-2">To uproszczone wyliczenie, nie oferta banku. Rzeczywiste raty sprawdzisz w kalkulatorze „Oferty banków”.</p>
                         <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-gray-900"></div>
                     </div>
                 </div>
