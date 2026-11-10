@@ -456,9 +456,13 @@ const HOUSES_NET: House[] = [
   },
 ];
 
+const GROSS_HOUSE_PRICE_OVERRIDES: Record<string, number> = {
+  peak_house: 350200
+};
+
 export const HOUSES: House[] = HOUSES_NET.map((house) => ({
   ...house,
-  basePrice: toGrossPrice(house.basePrice)
+  basePrice: GROSS_HOUSE_PRICE_OVERRIDES[house.id] ?? toGrossPrice(house.basePrice)
 }));
 
 // Common PV Info Text
@@ -1485,6 +1489,8 @@ const GROSS_PRICE_OVERRIDES: Record<string, Record<string, number>> = {
     'heating.floor_water_only': 43750
   },
   peak_house: {
+    'base_stage.raw_closed': 350200,
+    'base_stage.developer': 470700,
     'heating.floor_water_only': 38500
   }
 };
