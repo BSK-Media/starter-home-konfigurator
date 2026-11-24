@@ -29,6 +29,8 @@ const CreditSpaceCalculator: React.FC<Props> = ({ price, houseId, open, onClose 
     p: CREDITSPACE_PASSWORD,
     c: String(Math.min(Math.round(debouncedPrice), 5000000)),
     co: 'house',
+    t: '35', // start: 35 lat – jak "rata od" na pasku i na stronie
+    l: '85', // start: kredyt 85% = wkład własny 15%
     id: houseId,
   });
 
