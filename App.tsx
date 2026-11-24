@@ -199,14 +199,23 @@ useEffect(() => {
     return items;
   }, [selection, configData]);
 
-  // Loan Calculation: 20 years (240 months), 10% APR
-  const monthlyInstallment = useMemo(() => {
-    if (totalPrice === 0) return 0;
-    const r = 0.10 / 12; // Monthly rate
-    const n = 240; // Months (20 years)
-    const monthly = (totalPrice * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-    return Math.round(monthly);
+  // Rata od: minimalna rata z Credit Space (15% wkładu, 35 lat) dla aktualnej ceny konfiguracji.
+  // Te same założenia co "rata od" na stronie starterhome.pl/dostepne-modele. Liczy /api/rata.
+  const [monthlyInstallment, setMonthlyInstallment] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (totalPrice <= 0) { setMonthlyInstallment(null); return; }
+    let cancelled = false;
+    const t = setTimeout(() => {
+      fetch(`/api/rata?c=${Math.round(totalPrice)}`)
+        .then(r => (r.ok ? r.json() : null))
+        .then(d => { if (!cancelled && d && d.rata) setMonthlyInstallment(Math.ceil(d.rata)); })
+        .catch(() => {});
+    }, 600);
+    return () => { cancelled = true; clearTimeout(t); };
   }, [totalPrice]);
+
+  const installmentLabel = monthlyInstallment ? monthlyInstallment.toLocaleString('pl-PL') : '…';
 
   const validateForm = () => {
     const errors = {
@@ -602,26 +611,26 @@ useEffect(() => {
 
              {/* Loan Calculator - mobile */}
              <button type="button" onClick={() => setIsCreditOpen(o => !o)} className="sm:hidden w-full border border-[#729c36] text-[#729c36] text-xs uppercase tracking-widest font-bold py-2">
-                {isCreditOpen ? "Ukryj oferty kredytu ↓" : `Sprawdź ratę kredytu · ok. ${monthlyInstallment.toLocaleString()} zł/mc ↑`}
+                {isCreditOpen ? "Ukryj oferty kredytu ↓" : `Sprawdź ratę kredytu · od ${installmentLabel} zł/mc ↑`}
              </button>
 
              {/* Loan Calculator */}
              <div className="hidden sm:flex flex-col items-start pl-8 border-l border-gray-200 justify-center">
                 <div className="flex items-center gap-1 group relative cursor-help">
-                    <span className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Rata orientacyjna</span>
+                    <span className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Rata od</span>
                     <Info className="w-3 h-3 text-gray-300" />
                     
                     {/* Tooltip */}
                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 p-4 bg-gray-900 text-white text-xs text-center hidden group-hover:block z-50 shadow-xl">
-                        <p className="font-bold mb-1">Orientacyjna symulacja kredytu</p>
-                        <p className="opacity-80">Okres: 20 lat (240 rat), bez wkładu własnego</p>
-                        <p className="opacity-80">RRSO: 10%</p>
-                        <p className="mt-2 text-[10px] opacity-60 border-t border-gray-700 pt-2">To uproszczone wyliczenie, nie oferta banku. Rzeczywiste raty sprawdzisz w kalkulatorze „Oferty banków”.</p>
+                        <p className="font-bold mb-1">Najniższa rata wg Credit Space</p>
+                        <p className="opacity-80">Wkład własny: 15%, okres: 35 lat</p>
+                        <p className="opacity-80">Aktualne oferty banków dla Twojej konfiguracji</p>
+                        <p className="mt-2 text-[10px] opacity-60 border-t border-gray-700 pt-2">Inny wkład lub okres sprawdzisz w „Ofertach banków”. Wyliczenie informacyjne, nie oferta banku.</p>
                         <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-gray-900"></div>
                     </div>
                 </div>
                 <div className="text-xl font-bold text-gray-700 leading-none mt-1">
-                    {monthlyInstallment.toLocaleString()} <span className="text-xs text-gray-400 font-normal">PLN / mc</span>
+                    {installmentLabel} <span className="text-xs text-gray-400 font-normal">PLN / mc</span>
                 </div>
                 <button type="button" onClick={() => setIsCreditOpen(o => !o)} className="text-[10px] uppercase tracking-widest font-bold text-[#729c36] hover:text-[#5d822b] mt-1">
                     {isCreditOpen ? "Ukryj oferty ↓" : "Oferty banków ↑"}
